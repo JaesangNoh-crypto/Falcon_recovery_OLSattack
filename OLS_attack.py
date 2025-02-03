@@ -28,7 +28,7 @@ else:
     a = np.array(b_real)
     print("The estimation of first row: ", b)
     dist = l1_distance(a,b)
-    print(f"The L1 norm difference between the first and second rows is {dist}.")
+    print(f"The L1 norm difference between the first row and estimated vector is {dist}.")
 
 print("It take ",t_est,"sec for estimating B^{-1} using", sam_num, "samples")
 

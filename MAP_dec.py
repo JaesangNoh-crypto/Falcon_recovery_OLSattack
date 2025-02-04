@@ -109,4 +109,4 @@ for i in tqdm(list(range(sam_num))):
     estz0s.append( Binary_to_Integer(dec_bits))  
     decoding_num = decoding_num + 1
 
-print("Successrate of MAP decoding:", decoding_num/sam_num*100, "%")
+print("Success rate of MAP decoding:", decoding_num/sam_num*100, "%")

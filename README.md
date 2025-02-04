@@ -2,7 +2,8 @@
 This code implements a secret key recovery attack, called OLS attack, on Falcon. The OLS attack is a simple linear estimator that effectively recovers secret keys in GPV signatures by leveraging partial information about the signature. We also presents the efficient OLS attack which efficiently reduces the number of side channel attacks by using property of NTRU lattice. For a detailed explanation and theoretical background of the OLS attack and the efficient OLS attack, please refer to the paper https://eprint.iacr.org/2024/2043. The reference files used in this implementation are based on the Falcon python reference code originally developed by Thomas Prest, ensuring compatibility and reliability https://github.com/tprest/falcon.py. We have modified the original refernce code (falcon.py and ffsampling.py) to extract partial information from the signature, enabling the execution of the OLS attack.
 
 # Setup
-This code does not require a complex directory structure. The only essential requirement is the ability to run the Falcon python reference code  https://github.com/tprest/falcon.py. Before running this implementation, we recommend testing the Falcon reference code to ensure it functions correctly. If the reference test files run successfully, this code should also work without issues.
+This code does not require a complex directory structure. The essential requirement is the ability to run the Falcon python reference code  https://github.com/tprest/falcon.py. Before running this implementation, we recommend testing the Falcon reference code to ensure it functions correctly. 
+Additionally, please ensure that the NumPy and tqdm libraries are installed. This will allow the code to run without any issues.
 
 # How to use?
 These implemnetation of OLS attack and efficient OLS attack are straightforward:

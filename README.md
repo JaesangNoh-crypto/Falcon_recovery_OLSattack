@@ -22,18 +22,18 @@ The equation ![Equation](https://quicklatex.com/cache3/96/ql_026eb67ea7a6ebff026
 
 # Research team and contact information
 Supervising professor
-- Dong June Shin (Haynang University) / djshin@hanynag.ac.kr
+- Dong-June Shin (Haynang University) / djshin@hanynag.ac.kr, djshin@walllnut.com
   
 Researchers
 - Jaesang Noh / darkelzm@hanyang.ac.kr
 - Hyunseo Choi / hyun123456a@hanyang.ac.kr
 - Dongwoo Han / hdw0131@hanyang.ac.kr
-- Seunghwan Lee / kr3951@hanyang.ac.kr
-- Hyeonggeon Joo / hgjoo2021@gmail.com
-- Dohyeok Kim / dohyuk1000@hanyang.ac.kr
+- Seunghwan Lee / kr3951@hanyang.ac.kr, shlee@walllnut.com
+- Hyeong-Gun Joo / hgjoo2021@gmail.com
+- Dohyuk Kim / dohyuk1000@hanyang.ac.kr, dhkim@walllnut.com
 - Youngjun Kim / june0888@hanyang.ac.kr
 - Taejeong Kim / birdy0212@hayang.ac.kr
-- Shin Kim / thegimsin@hanyang.ac.kr
+- Sin Kim / thegimsin@hanyang.ac.kr
     
 Research lab website: http://ccrl.hanyang.ac.kr 
 

@@ -5,10 +5,15 @@ This code implements a secret key recovery attack, called OLS attack, on Falcon.
 This code does not require a complex directory structure. The only essential requirement is the ability to run the Falcon python reference code  https://github.com/tprest/falcon.py. Before running this implementation, we recommend testing the Falcon reference code to ensure it functions correctly. If the reference test files run successfully, this code should also work without issues.
 
 # How to use?
-Using this implementation is straightforward:
+Using this implementation of OLS attack and efficient OLS attack is straightforward:
 1. Open `OLS_attack.py` or `Eff_OLS_attack.py` and adjust the `N` to set the desired dimension for the secret polynomial. 
 2. Modify `sam_num` to specify the number of samples used in the OLS attack or the efficient OLS attack.
 3. Run `OLS_attack.py` or `Eff_OLS_attack.py` in the terminal to execute sample collection and the OLS attack and the efficient OLS attack process.
+
+Using this implementation of MAP decoding is straightforward:
+1. Open `MAC_dec.py` and adjust the `sam_num` to generate BaseSampler output z0.
+2. Modify `success_pro` to set the success rate of the bianry classifier such as MLP. 
+3. Run `MAP_dec.py` in the terminal to obtain the success rate of the MAP decoding.
 
 This should allow you to perform the attack efficiently with minimal configuration. If you wish to modify the OLS attack or the efficient OLS attack, you can do so by editing `falcon.py`. Specifically, you can alter the `OLS_attack` or `Eff_OLS_attack` to implement a different linear estimator or introduce a new type of estimator, such as a ridge estimator, elastic net estimator, or lasso estimator. Additionally, if you want to modify the method for extracting partial information, you should modify the `sample_preimage` function and its internal function `ffsampling_fft2`. The `ffsampling_fft2` function is a modified version of `ffsampling_fft`, specifically designed to extract partial information.
 

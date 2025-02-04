@@ -412,10 +412,11 @@ class SecretKey:
         N = self.n  # Dimension of secret key polynomial 
 
         s_box = []  # signature matrix: i-th row is i-th drawn signature using same secret basis of Falcon
-        z_box = []  # z matrix: i-th row is partial information
+        z_box = []  # z matrix: i-th row is partial information about i-th drawn signature
     
 
-        iter = tqdm(list(range(sam_num)))
+        iter = tqdm(list(range(sam_num))) 
+        # you need install tqdm for checking the collecintg time. If you want to off this option or unistall the tqdm, please set "iter = sam_num"!
 
         for _ in iter:
             hashed = self.random_point(b"random")  # make random c in [0,q-1]
@@ -427,14 +428,14 @@ class SecretKey:
                     seed = randombytes(SEED_LEN)
                     s, z_bar = self.sample_preimage(hashed, seed=seed)
                 norm_sign = sum(coef ** 2 for coef in s)
-                # Check the Euclidean norm
+
                 if norm_sign <= self.signature_bound:
                     # collect sample for making X and Y 
                     s_box.append(s) # X matrix in OLS attack 
                     z_box.append(z_bar) # Y matrix in OLS attack
                     break                                      
 
-        #OLS attack term             
+        # OLS attack term             
         S = np.array(s_box, dtype=np.float64)
         Z = np.array(z_box, dtype=np.float64)
         S_hp = S.astype(np.float64)

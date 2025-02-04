@@ -7,8 +7,8 @@ This code does not require a complex directory structure. The only essential req
 # How to use?
 Using this implementation is straightforward:
 1. Open `OLS_attack.py` or `Eff_OLS_attack.py` and adjust the `N` to set the desired dimension for the secret polynomial. 
-2. Modify `sam_num` to specify the number of samples used in the OLS attack.
-3. Run `OLS_attack.py` or `Eff_OLS_attack.py` in the terminal to execute sample collection and the OLS attack process.
+2. Modify `sam_num` to specify the number of samples used in the OLS attack or the efficient OLS attack.
+3. Run `OLS_attack.py` or `Eff_OLS_attack.py` in the terminal to execute sample collection and the OLS attack and the efficient OLS attack process.
 
 This should allow you to perform the attack efficiently with minimal configuration. If you wish to modify the OLS attack or the efficient OLS attack, you can do so by editing `falcon.py`. Specifically, you can alter the `OLS_attack` or `Eff_OLS_attack` to implement a different linear estimator or introduce a new type of estimator, such as a ridge estimator, elastic net estimator, or lasso estimator. Additionally, if you want to modify the method for extracting partial information, you should modify the `sample_preimage` function and its internal function `ffsampling_fft2`. The `ffsampling_fft2` function is a modified version of `ffsampling_fft`, specifically designed to extract partial information.
 

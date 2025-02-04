@@ -407,7 +407,7 @@ class SecretKey:
     
 
     def OLSattack(self, sam_num, randombytes=urandom):
-        ## OLS attack: Y = XB^{-1} + E, Y: partial information matrix, X: signature matrix, E: error matrix
+        ## OLS attack: Y = XA^{-1} + E, Y: partial information matrix, X: signature matrix, E: error matrix
 
         N = self.n  # Dimension of secret key polynomial 
 
@@ -442,16 +442,62 @@ class SecretKey:
         Z_hp = Z.astype(np.float64)
         start_time = time.time()
         S_inv = np.linalg.pinv(S_hp, rcond=1e-10) #(X^TX)^-1X^T
-        B = np.dot(S_inv, Z_hp)  # (X^TX)^-1X^TY for estimating B^{-1}
+        B = np.dot(S_inv, Z_hp)  # (X^TX)^-1X^TY for estimating A^{-1}
         B_inv = np.linalg.inv(B)
-        b_1 = B_inv[0] # first row of B^{-1}
+        b_1 = B_inv[0] # first row of A
         end_time = time.time()
         execution_time = end_time - start_time
         b_list = b_1.tolist()
 
 
         return b_list, execution_time
+
+
+    def EffOLSattack(self, sam_num, randombytes=urandom):
+        # Efficient OLS attack: y_1 = Xb_1' + e_1, y_1: first column of partial information matrix, X: signature matrix, 
+        # e_1: first column of error matrix, b_1': first column of matrix A
+
+        N = self.n  # Dimension of secret key polynomial 
+
+        s_box = []  # signature matrix: i-th row is i-th drawn signature using same secret basis of Falcon
+        z_box = []  # z matrix: i-th row is partial information
     
+
+        iter = tqdm(list(range(sam_num)))
+
+        for _ in iter:
+            hashed = self.random_point(b"random")  # make random c in [0,q-1]
+
+            while(1):
+                if (randombytes == urandom):
+                    s, z_bar = self.sample_preimage(hashed)
+                else:
+                    seed = randombytes(SEED_LEN)
+                    s, z_bar = self.sample_preimage(hashed, seed=seed)
+                norm_sign = sum(coef ** 2 for coef in s)
+                # Check the Euclidean norm
+                if norm_sign <= self.signature_bound:
+                    # collect sample for making X and Y 
+                    s_box.append(s) # X matrix in efficient OLS attack 
+                    z_box.append(z_bar) # Y matrix in OLS attack
+                    break                                      
+
+        # Efficient OLS attack term            
+        S = np.array(s_box, dtype=np.float64)
+        Z = np.array(z_box, dtype=np.float64)
+        S_hp = S.astype(np.float64)
+        Z_hp = Z.astype(np.float64)
+        
+        start_time = time.time()
+        S_inv1 = np.linalg.pinv(S_hp, rcond=1e-10) # (X^TX)^-1X^T
+        B = np.dot(S_inv1, Z_hp[:,0])  # (X^TX)^-1X^Ty
+        b_norm = np.linalg.norm(B,2) 
+        b_1 = B/(b_norm**2) 
+        end_time = time.time()
+        execution_time = end_time - start_time
+        b_list = b_1.tolist()
+
+        return b_list, execution_time
 
 
 

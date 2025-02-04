@@ -6,12 +6,19 @@ This code does not require a complex directory structure. The only essential req
 
 # How to use?
 Using this implementation is straightforward:
-1. Open `OLS_attack.py` and adjust the `N` to set the desired dimension for the secret polynomial. 
+1. Open `OLS_attack.py` or `Eff_OLS_attack.py` and adjust the `N` to set the desired dimension for the secret polynomial. 
 2. Modify `sam_num` to specify the number of samples used in the OLS attack.
-3. Run `OLS_attack.py` in the terminal to execute sample collection and the OLS attack process.
+3. Run `OLS_attack.py` or `Eff_OLS_attack.py` in the terminal to execute sample collection and the OLS attack process.
 
 This should allow you to perform the attack efficiently with minimal configuration. If you wish to modify the OLS attack, you can do so by editing `falcon.py`. Specifically, you can alter the `OLS attack` to implement a different linear estimator or introduce a new type of estimator, such as a ridge estimator, elastic net estimator, or lasso estimator. Additionally, if you want to modify the method for extracting partial information, you should modify the `sample_preimage` function and its internal function `ffsampling_fft2`. The `ffsampling_fft2` function is a modified version of `ffsampling_fft`, specifically designed to extract partial information.
 
+
+# Performance of these OLS attacks
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/27785d52-599b-44a2-af73-f2727c86f5c7" alt="image">
+</p>
+
+The equation ![Equation](https://quicklatex.com/cache3/96/ql_026eb67ea7a6ebff0263f9fb93f24b96_l3.png) and ![equation](https://quicklatex.com/cache3/d5/ql_7a71a2f27adfdd7a64c25a05a8e4edd5_l3.png) represent the estimator in `OLS attack.py` and `Eff_OLS_attack.py`, respectively. This table illustrates that the average number of samples and time required for achieving particular success rate (SR) to recover the secret key of Falcon-256, 512, and 1024 by the OLS attack. For further details, please refer to the paper https://eprint.iacr.org/2024/2043.
 
 # Research team and contact information
 Supervising professor
